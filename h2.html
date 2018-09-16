@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>表单</title>
+		<link rel="icon" href="img/cloud-icon.png"/>
+		<style>.a{color: red;}</style>
+	</head>
+	<body>
+		<fieldset>
+			<legend class="a">基本信息</legend>
+			<p>姓名：<input type="text"/></p>
+			<p>年龄：<input type="number"/></p>
+		</fieldset>
+		<fieldset>
+			<legend class="a">你想在哪里收到邮件？</legend>
+			<p>邮箱：<input type="email" onfocus="isEmail()"/></p>
+		</fieldset>
+		<fieldset>
+			<legend class="a">收入情况</legend>
+			<p>月收入：<input type="search" name="工资" autocomplete="on" list="names" results/>
+			<datalist id="names">
+				<option>10k+</option>
+				<option>20k+</option>
+				<option>30k+</option>
+				<option>40k+</option>
+			</datalist>
+			</p>
+			<p>银行卡：<input type="number"/>&nbsp;有效期：<input type="date"/></p>
+		</fieldset><fieldset>
+			<legend class="a">选择提交文件</legend>
+			<p>文件&nbsp;<button>提交文件</button>&nbsp;未选择任何文件</p>
+		</fieldset>
+		<p><button>提交</button></p>
+	</body>
+	<script> 
+		function isEmail(str){
+			var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+			return reg.test(str); 
+		}
+</script> 
+</html>
