@@ -4,39 +4,72 @@
 		<meta charset="utf-8">
 		<title>表单</title>
 		<link rel="icon" href="img/cloud-icon.png"/>
-		<style>.a{color: red;}</style>
+		<style>
+			fieldset{width: 450px;height: 60px;margin-top: 25px;}
+			legend{color: red;}
+		</style>
 	</head>
 	<body>
 		<fieldset>
-			<legend class="a">基本信息</legend>
-			<p>姓名：<input type="text"/></p>
-			<p>年龄：<input type="number"/></p>
+			<legend>基本信息</legend>
+			姓名<input type="text" required="required" placeholder="请输入姓名"/><br />
+			年龄<input type="number" style="width:70px;"/>
 		</fieldset>
 		<fieldset>
-			<legend class="a">你想在哪里收到邮件？</legend>
-			<p>邮箱：<input type="email" onfocus="isEmail()"/></p>
-		</fieldset>
-		<fieldset>
-			<legend class="a">收入情况</legend>
-			<p>月收入：<input type="search" name="工资" autocomplete="on" list="names" results/>
-			<datalist id="names">
-				<option>10k+</option>
-				<option>20k+</option>
-				<option>30k+</option>
-				<option>40k+</option>
+			<legend>你想在哪里收到邮件？</legend>
+			邮箱<input type="text" required="required" placeholder="请输入邮箱" list="movie" id="regemail" />
+			<datalist id="movie">
+				<option>@qq.com</option>
+				<option>@163.com</option>
+				<option>@126.com</option>
+				<option>@gmail.com</option>
+				<option>@yahoo.com.cn</option>
 			</datalist>
-			</p>
-			<p>银行卡：<input type="number"/>&nbsp;有效期：<input type="date"/></p>
-		</fieldset><fieldset>
-			<legend class="a">选择提交文件</legend>
-			文件&nbsp;<input type="file"/>
 		</fieldset>
-		<p><button>提交</button></p>
+		<fieldset>
+			<legend>收入情况</legend>
+			月收入<select>
+				<option value="">20k+</option>
+				<option value="">30k+</option>
+			</select><br />
+			银行卡<input type="number"/>
+			有效期<input type="date"/>
+		</fieldset>
+		<fieldset>
+			<legend>选择提交文件</legend>
+			文件<input type="file" multiple="multiple" /
+		</fieldset>
+		<form method="post">
+			<br />
+			<input type="submit" value="提交"/>
+		</form>
 	</body>
-	<script> 
-		function isEmail(str){
-			var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
-			return reg.test(str); 
+	<script type="text/javascript">
+		function $$(id){
+			return document.getElementById(id);
 		}
-</script> 
-</html>
+		var lists;
+		var len;
+		window.onload=function(){
+			var objtxt=$$("regemail");
+			var objlist=$$("movie");
+			lists=objlist.getElementsByTagName("option");
+        	len=lists.length;
+        	objtxt.onkeyup=function(){
+        		var txt=this.value;
+            	var flag="";
+            	if(txt.indexOf("@")>0){
+                	flag=txt.substring(txt.indexOf("@")-1);
+                	txt=txt.substring(0,txt.indexOf("@"));
+            	}else{
+                	flag="";
+            	}
+            	var val="";
+            	for(var i=0; i<len; i++){
+                	val=lists[i].textContent;
+                	val=val.substring(val.indexOf("@"));
+                	lists[i].textContent=txt+val;
+            	}
+        	}
+    	}
+	</script>

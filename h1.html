@@ -1,54 +1,72 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="utf-8" />
 		<title>音乐播放器</title>
-		<link rel="icon" href="img/cloud-icon.png"/>
-		<style>
-			#div1{float:left}
-			#div2{float:right}
-			#audio2{padding-top: 500px;}
-		</style>
+		<link rel="icon" href="img/cloud-icon.png">
 	</head>
-	<body>
-		<div id="div1">
-			<audio src="1.mp3" id="audio"></audio>
-			<p>甜蜜再恋</p>
-			<p><button onclick="play()">播放音乐</button></p>
-			<p><button onclick="pause()">暂停播放</button></p>
-		</div>
-		<div id="div2">
-			<audio src="2.mp3" id="audio1"></audio>
-			<p>年少有为</p>
-			<p><button onclick="play1()">播放音乐</button></p>
-			<p><button onclick="pause1()">暂停播放</button></p>
-		</div>
-		<audio src="2.mp3" controls="controls" id="audio2"></audio>
-	</body>
-	<script>
-		function play(){
-			var audio = document.getElementById('audio');
-			var playbutton = document.getElementById('playaudio');
-			var pausebutton = document.getElementById('pauseaudio');
-			audio.play();
-		}
-		function pause(){
-			var audio = document.getElementById('audio');
-			var playbutton = document.getElementById('playaudio');
-			var pausebutton = document.getElementById('pauseaudio');
+<style>
+	.left{width: 180px;height: 35px;background-color: blue;color: white;float: left;text-align: center;line-height: 35px;}
+	.right{width: 180px;height: 35px;background-color: black;color: white;float: left;text-align: center;line-height: 35px;}
+	#song{width: 360px;height: 200px;background-color: lightyellow;}
+	.button{float: right;}
+	#but{margin-right: -42px;float: right;}
+	#btn{float: left;}
+</style>
+<script>
+	 var music = new Array();
+	 music=[0,1];
+	function play(){
+		var audio = document.getElementById('audios');
+		audio.play();
+	}
+	function play1(){
+		var audio = document.getElementById('audios');
+		audio.src="2.mp3";
+		audio.play();
+	}
+	var shang=document.getElementById('shang');
+	var num=0;
+	function pre (){
+		num=(num+1)%2;
+		var audio = document.getElementById('audios');
+		audio.src="music"+music[num]+".mp3";
+		audio.play();
+	}
+	function next (){
+		num=(num+1)%2;
+		var audio = document.getElementById('audios');
+		audio.src="music"+music[num]+".mp3";
+		audio.play();
+	}
+	function start(){
+		var audio = document.getElementById('audios');
+		if(audio.played)
 			audio.pause();
-		}
-		function play1(){
-			var audio = document.getElementById('audio1');
-			var playbutton = document.getElementById('playaudio');
-			var pausebutton = document.getElementById('pauseaudio');
+		if(audio.paused)
 			audio.play();
-		}
-		function pause1(){
-			var audio = document.getElementById('audio1');
-			var playbutton = document.getElementById('playaudio');
-			var pausebutton = document.getElementById('pauseaudio');
-			audio.pause();
-		}
-	</script>
+	}
+</script>
+<body>
+	<div>
+		<div class="left">在线音乐</div>
+		<div class="right">本地音乐</div>
+	</div>
+	<div id="song">
+		<div>
+			甜蜜再恋 <input type="button" onclick="play()" value="播放" class="button" />
+		</div>
+		<div>
+			年少有为<input type="button" onclick="play1()" value="播放" id="but"/>
+		</div>
+	</div>
+	<div>
+		<div id="btn"><input type="button" value="上一首" onclick="pre()"/><br />
+		<input type="button" value="下一首" onclick="next()" /></div>
+		<div id="bofangqi"><audio src="1.mp3" id="audios" controls="controls"></audio></div>
+	</div>
+	</div>
+</body>
 </html>
+
+
