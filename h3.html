@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>页面换肤</title>
+		<link rel="icon" href="img/cloud-icon.png">
+		<style>
+			#center{position:absolute;top:50%;left:50%;margin: -150px 0 0 -500px;width: 1000px;}
+			legend{color:red;font-weight:bolder}
+			fieldset{font-size:30px;}
+			#a{border:1px solid;width:950px;height:60px;}
+			.color{width:35px;height:25px;margin-left:10px;float:left;margin-top:15px;}
+			#p{height:60px;font-size: 20px;}
+			.color:hover{margin-top: 10px;}
+		</style>
+	</head>
+	<body>
+		<div id="center">
+			<fieldset>
+				<legend>页面换肤</legend>
+				<div id="a">
+					<div class="color" onmouseover="jump(0)" style="background-color:#f00"></div>
+					<div class="color" onmouseover="jump(1)" style="background-color:#ff0"></div>
+					<div class="color" onmouseover="jump(2)" style="background-color:#ea0"></div>
+					<div class="color" onmouseover="jump(3)" style="background-color:#de0"></div>
+					<div class="color" onmouseover="jump(4)" style="background-color:#666"></div>
+					<div class="color" onmouseover="jump(5)" style="background-color:#333"></div>
+				</div>
+				    <div><p id="p">LocalStorage将数据保存在客户端本地的硬件设备中，即使浏览器被关闭了，该数据仍然存在，
+					下次打开浏览器访问网站时仍然可以继续使用</p></div>
+			</fieldset>
+		</div>	
+	</body>
+	<script>
+		var color=document.getElementsByClassName("color");
+		var p=document.getElementById('p');
+		function jump(i){
+			p.style.backgroundColor=color[i].style.backgroundColor;
+			localStorage.setItem('color',color[i].style.backgroundColor);
+		}
+		if(localStorage.length==0){
+			p.style.backgroundColor="red";
+		}else
+		{
+			p.style.backgroundColor=localStorage.getItem('color');
+		}
+	</script>
+</html>
