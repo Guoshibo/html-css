@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>钟表</title>
+		<style>
+			#canvas1{
+				border: 3px solid lightblue;
+				display: block;
+				margin: 50px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas1" width="600" height="600"></canvas>
+	</body>
+	<script>
+		function clock(){
+			var elem=document.getElementById("canvas1");
+			var cxt=elem.getContext("2d");
+			cxt.clearRect(0,0,600,600);
+			cxt.beginPath();
+			cxt.arc(300,300,200,0*Math.PI,2*Math.PI);
+			cxt.lineWidth=5;
+			cxt.strokeStyle="lightsteelblue";
+			cxt.stroke();
+			cxt.closePath();
+			
+			cxt.save();
+			cxt.beginPath();
+			cxt.translate(300,300);
+			for(var i=0;i<60;i++){
+				cxt.fillStyle="lightskyblue";		
+				cxt.fillRect(0,-190,5,20);
+				cxt.rotate(6/180*Math.PI);
+			}
+			for(var i=0;i<12;i++){
+				cxt.fillStyle="palegreen";		
+				cxt.fillRect(0,-190,6,28);
+				cxt.rotate(30/180*Math.PI);
+			}
+			for(var n=1;n<13;n++){
+				var m=(270+30*n)*Math.PI/180;
+				var x=Math.cos(m)*150;
+				var y=Math.sin(m)*150;
+				cxt.font = "bold 16px 宋体";
+	        	cxt.fillStyle = "lightcoral";
+				cxt.fillText(n,x,y,10);
+			}
+			cxt.closePath();
+			
+			cxt.beginPath();
+			cxt.arc(0,0,5,0,2*Math.PI);
+			cxt.fillStyle="black";
+			cxt.fill();
+			cxt.closePath();
+			cxt.restore();
+			
+			
+			var time=new Date();
+			var h=time.getHours()/12<1?time.getHours():time.getHours()-12;
+			var s=time.getSeconds();
+			var m=time.getMinutes();
+			var hour=h+m/60+s/3600;
+			var min=m+s/60;
+			
+			cxt.save();
+			cxt.translate(300,300);
+			var d=h*30*Math.PI/180-Math.PI*0.5;
+		    cxt.rotate(d);
+		    cxt.beginPath();
+		    cxt.lineWidth = 4.5;
+		    cxt.moveTo(-15, 0);
+		    cxt.lineTo(60, 0);
+		    cxt.strokeStyle = 'purple';
+		    cxt.stroke();
+		    cxt.restore();
+		    cxt.closePath();
+		    
+		    cxt.save(); 
+			cxt.translate(300,300);
+			var e=m*6*Math.PI/180-Math.PI*0.5;
+		    cxt.rotate(e);
+		    cxt.beginPath();
+		    cxt.lineWidth = 4;
+		    cxt.moveTo(-15, 0);
+		    cxt.lineTo(100, 0);
+		    cxt.strokeStyle = 'powderblue';
+		    cxt.stroke();
+		    cxt.restore();
+		    cxt.closePath();
+		    
+	
+		    cxt.save();
+			cxt.translate(300,300);
+			var f=s*6*Math.PI/180-Math.PI*0.5;
+		    cxt.rotate(f);
+		    cxt.beginPath();
+		    cxt.lineWidth = 3;
+		    cxt.moveTo(-15, 0);
+		    cxt.lineTo(120, 0);
+		    cxt.arc(100,0,3,0,2*Math.PI)
+		    cxt.strokeStyle = 'darksalmon';
+		    cxt.stroke();
+		    cxt.restore();
+		    cxt.closePath();
+		}
+		setInterval(clock,1000);
+	</script>
+</html>

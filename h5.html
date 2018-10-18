@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>七巧板</title>
+		<style>
+			#canvas1{
+				border:1px solid #ccc;
+				display:block;
+				margin:100px auto;
+			}
+		</style>
+		<link rel="icon" href="img/cloud-icon.png">
+	</head>
+	<body>
+		<canvas id="canvas1" width="500" height="500"></canvas>
+	</body>
+	<script>
+		var elem=document.getElementById("canvas1");
+		var context=elem.getContext("2d");
+		var a=Math.sqrt(80000);
+		var b=Math.sqrt(20000);
+		var c=Math.sqrt(5000);
+		var d=Math.sqrt(45000);
+		context.beginPath();
+		context.moveTo(0,0);
+		context.lineTo(0,a);
+		context.lineTo(b,b);
+		context.fillStyle="skyblue";
+		context.closePath();
+		context.fill();
+		context.stroke();
+		
+		context.beginPath();
+		context.moveTo(0,0);
+		context.lineTo(b,b);
+		context.lineTo(a,0);
+		context.fillStyle="lightgreen";
+		context.closePath();
+		context.fill();
+		context.stroke();
+		
+		context.beginPath();
+		context.moveTo(0,a);
+		context.lineTo(b,a);
+		context.lineTo(c,d);
+		context.fillStyle="lightpink";
+		context.closePath();
+		context.fill();
+		context.stroke();
+		
+		context.beginPath();
+		context.moveTo(c,d);
+		context.lineTo(b,a);
+		context.lineTo(d,d);
+		context.lineTo(b,b);
+		context.fillStyle="lightsalmon";
+		context.closePath();
+		context.fill();
+		context.stroke();
+		
+		context.beginPath();
+		context.moveTo(b,b);
+		context.lineTo(d,d);
+		context.lineTo(d,c);
+		context.fillStyle="lightcoral";
+		context.closePath();
+		context.fill();
+		context.stroke();
+		
+		context.beginPath();
+		context.moveTo(d,c);
+		context.lineTo(d,d);
+		context.lineTo(a,b);
+		context.lineTo(a,0);
+		context.fillStyle="lightgoldenrodyellow";
+		context.closePath();
+		context.fill();
+		context.stroke();
+		
+		context.beginPath();
+		context.moveTo(b,a);
+		context.lineTo(a,a);
+		context.lineTo(a,b);
+		context.fillStyle="lavender";
+		context.closePath();
+		context.fill();
+		context.stroke();
+	</script>
+</html>
